@@ -15,7 +15,7 @@ const Todos = () => {
     const { refetch, data: todos = [], isError } = useQuery({
         queryKey: ['todo'],
         queryFn: async () => {
-            const response = await fetch(`http://localhost:3000/todo`)
+            const response = await fetch(`https://simple-todo-server-production.up.railway.app/todo`)
             return response.json()
         }
     })
@@ -30,7 +30,7 @@ const Todos = () => {
 
         let todo = data.todo
 
-        axios.post('http://localhost:3000/todo', {
+        axios.post('https://simple-todo-server-production.up.railway.app/todo', {
             todo
         }).then((response) => {
             // console.log(response)
@@ -46,7 +46,7 @@ const Todos = () => {
 
     const handleComplete = (item) => {
         let id = item?._id
-        axios.patch(`http://localhost:3000/todo/${id}`)
+        axios.patch(`https://simple-todo-server-production.up.railway.app/todo/${id}`)
             .then(res => {
                 // console.log(res)
                 if (res.data.modifiedCount > 0) {
@@ -62,7 +62,7 @@ const Todos = () => {
     }
 
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:3000/todo/${id}`)
+        axios.delete(`https://simple-todo-server-production.up.railway.app/todo/${id}`)
             .then((response) => {
                 // console.log(response)
                 if (response.data.deletedCount > 0) {
